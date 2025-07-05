@@ -21,7 +21,7 @@ launch `cfdisk` to partition correct disk
 ```bash
 cfdisk /dev/nvme0
 ```
-_Replace /dev/nvme0n1 etc. with your actual device names as seen with lsblk._
+> _Replace `/dev/nvme0` etc. with your actual device names as seen with `lsblk`_
 
 ### My Partitioning Scheme
 
@@ -34,7 +34,7 @@ _Replace /dev/nvme0n1 etc. with your actual device names as seen with lsblk._
 
 ## 3. Formatting Partitions
 
-Partition as said in [Installation Guide](https://nixos.wiki/wiki/NixOS_Installation_Guide#Partitioning)
+Partition as said in the [Installation Guide](https://nixos.wiki/wiki/NixOS_Installation_Guide#Partitioning)
 
 - EFI
 
@@ -103,12 +103,21 @@ git clone https://github.com/Steinebeisser/testNix.git /etc/steinflake
 > [!WARNING]
 > Need to rename Repo
 
-## 8. Regenerate Nixos with config
+## 8. Copy your Hardware Config
+
+to get correct config for your device
+
+```bash
+rm /etc/steinflake/nixos/hardware-configuration.nix
+cp /etc/nixos/hardware-configuration.nix /etc/steinflake/nixos
+```
+
+## 9. Regenerate Nixos with config
 
 ```bash
 nixos-rebuild switch --flake /etc/steinflake#stein-btw
 ```
 
-## 9. Additionl Tip
+## 10. Additionl Tip
 
 If you want to have goated Setup, consider getting inspired by my [dotfiles Repo](https://github.com/Steinebeisser/Dotfiles)
