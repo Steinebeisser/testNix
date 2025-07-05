@@ -25,38 +25,47 @@
     pulse.enable = true;
   };
 
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry;
+    enableSSHSupport = true;
+  };
 
-users.users.stein = {
+  users.users.stein = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     packages = with pkgs; [
-	tree
-	neovim
-	kitty
-	git
-	starship
-	fzf
-	eza
-	bat
-	btop
-	ripgrep
-	cargo
-	rustc
-	wofi
-	fastfetch
-	kdePackages.dolphin
-	hyprshot
-	dunst
-	gcc
-	clang
-	cmake
-	hypridle
-	hyprpaper
-	chezmoi
-	wl-clipboard
-	hyprpicker
-	hyprlock
-	alejandra
+      tree
+      neovim
+      kitty
+      git
+      starship
+      fzf
+      eza
+      bat
+      btop
+      ripgrep
+      cargo
+      rustc
+      wofi
+      fastfetch
+      kdePackages.dolphin
+      hyprshot
+      dunst
+      gcc
+      clang
+      cmake
+      hypridle
+      hyprpaper
+      chezmoi
+      wl-clipboard
+      hyprpicker
+      hyprlock
+      alejandra
+      gnupg
+      pinentry-tty
+      diff-so-fancy
     ];
   };
 
