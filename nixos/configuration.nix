@@ -20,6 +20,7 @@
   programs.zsh.enable = true;
   programs.waybar.enable = true;
   programs.firefox.enable = true;
+  programs.steam.enable = true;
 
   programs.neovim.defaultEditor = true;
 
