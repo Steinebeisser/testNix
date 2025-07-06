@@ -1,11 +1,14 @@
-{ config, lib, pkgs, ... }:
 {
-  imports =
-    [ ./hardware-configuration.nix ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [./hardware-configuration.nix];
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -17,7 +20,7 @@
   programs.zsh.enable = true;
   programs.waybar.enable = true;
   programs.firefox.enable = true;
-  
+
   users.defaultUserShell = pkgs.zsh;
 
   services.openssh.enable = true;
@@ -38,7 +41,7 @@
 
   users.users.stein = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     packages = with pkgs; [
       tree
       neovim
@@ -79,16 +82,14 @@
       pavucontrol
       libayatana-appindicator
       discord
+      xclip
     ];
   };
-
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans
   ];
-
-
 
   environment.systemPackages = with pkgs; [
     vim
@@ -96,8 +97,5 @@
     zsh
   ];
 
-
-  system.stateVersion = "25.05"; 
-
+  system.stateVersion = "25.05";
 }
-
