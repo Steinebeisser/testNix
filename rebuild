@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+pushd ~/steinflake/nixos
+nvim configuration.nix
+alejandra . &>/dev/null
+git diff -U0 *.nix
+echo "NixOS Rebuilding ..."
+sudo nixos-rebuild switch --flake ~/steinflake#stein-btw  &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+
+gen_info=$(sudo nix-env --list-generations --profile /nix/var/nix/profiles/system | grep '(current)')
+gen_num=$(echo "$gen_info" | awk '{print $1}')
+gen_date=$(echo "$gen_info" | awk '{print $2, $3}')
+gen_msg="Generation $gen_num - $gen_date"
+
+temp_dir="$HOME/.local/share/rebuild"
+mkdir -p "$temp_dir"
+
+temp_file=$(mktemp "$temp_dir/$(basename "$0").XXXXXXXXXX")
+trap 'rm -f -- "$temp_file"' EXIT
+echo "$gen_msg" > "$temp_file"
+
+git add *.nix
+git commit -e -F "$temp_file"
+
+rm "$temp_file"
+popd
