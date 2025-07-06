@@ -3,6 +3,8 @@
   imports =
     [ ./hardware-configuration.nix ];
 
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings.experimental-features = ["nix-command" "flakes" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,6 +33,8 @@
     pinentryPackage = pkgs.pinentry;
     enableSSHSupport = true;
   };
+
+  services.power-profiles-daemon.enable = true;
 
   users.users.stein = {
     isNormalUser = true;
@@ -66,14 +70,22 @@
       gnupg
       pinentry-tty
       diff-so-fancy
+      mpd-small
+      waybar-mpris
+      playerctl
+      spotify
+      power-profiles-daemon
+      gamemode
+      pavucontrol
+      libayatana-appindicator
+      discord
     ];
   };
 
 
   fonts.packages = with pkgs; [
-	nerd-fonts.jetbrains-mono
-	noto-fonts-cjk-sans
-	font-awesome
+    nerd-fonts.jetbrains-mono
+    noto-fonts-cjk-sans
   ];
 
 
