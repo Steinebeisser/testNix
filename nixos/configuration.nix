@@ -21,6 +21,8 @@
   programs.waybar.enable = true;
   programs.firefox.enable = true;
 
+  programs.neovim.defaultEditor = true;
+
   users.defaultUserShell = pkgs.zsh;
 
   services.openssh.enable = true;
@@ -44,7 +46,6 @@
     extraGroups = ["wheel"];
     packages = with pkgs; [
       tree
-      neovim
       kitty
       git
       starship
@@ -95,6 +96,7 @@
     vim
     wget
     zsh
+    neovim
   ];
 
   system.stateVersion = "25.05";
