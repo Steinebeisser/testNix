@@ -14,5 +14,8 @@
 
     nixd
     alejandra
+
+    csharp-ls
+    csharpier
   ];
 }
