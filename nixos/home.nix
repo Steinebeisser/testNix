@@ -15,7 +15,7 @@
     nixd
     alejandra
 
-    csharp-ls
+    roslyn-ls
     csharpier
   ];
 }
