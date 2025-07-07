@@ -85,6 +85,8 @@
       libayatana-appindicator
       discord
       xclip
+      dotnetCorePackages.dotnet_9.sdk
+      dotnetCorePackages.dotnet_8.sdk
     ];
   };
 
