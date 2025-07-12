@@ -15,15 +15,15 @@
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in 
   {
-    nixosConfigurations.stein-btw = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.home-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./nixos/configuration.nix
+        ./devices/home-pc/configuration.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.stein = ./nixos/home.nix;
+          home-manager.users.stein = ./home/home-pc.nix;
         }
       ];
     };
